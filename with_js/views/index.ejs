@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form action="/shortUrls" method="POST" class="my-4 form-inline">
+            <label for="fullUrl" class="sr-only">URL</label>
+            <!-- required to make user enter URL -->
+            <input required placeholder="URL" type="url" 
+                    name="fullUrl" id="fullUrl" class="form-control col mr-3">
+            <button class="btn btn-primary" type="submit">Shorten</button>
+        </form>
+
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Full URL</th>
+                    <th>Short URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- loop through shorturls -->
+                <% shortUrls.forEach(url => { %>
+                    <tr>
+                        <!-- Full URL Section -->
+                        <td><a href="<%= url.full %>"><%= url.full %></a></td>
+                        <!-- Shorten URL Section -->
+                        <td><a href="<%= url.short %>"><%= url.short %></a></td>
+                        <!-- How many Clicks Section -->
+                        <td><%= url.clicks %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
